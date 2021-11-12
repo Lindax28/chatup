@@ -1,1 +1,3 @@
-# hiit-app
+# HIIT App
+
+Built with Golang
