@@ -1,3 +1,3 @@
-# HIIT App
+# ChatUp
 
 Built with Golang
