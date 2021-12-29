@@ -1,3 +1,3 @@
 # ChatUp
 
-Built with Golang
+Chat app built with Golang and ReactJS
