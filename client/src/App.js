@@ -1,30 +1,35 @@
 import './App.css';
 
-import { Component } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   connect,
   sendMessage,
 } from './api';
+import ChatHistory from './components/ChatHistory';
+import Header from './components/Header/Header';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        connect();
-    }
+export default function App(props) {
+  const [chatHistory, setChatHistory] = useState([]);
+  useEffect(() => {
+    connect((msg) => {
+      console.log("New Message");
+      setChatHistory([...chatHistory, msg]);
+    });
+  });
 
-    send() {
-        console.log("hello");
-        sendMessage("hello");
-      }
+  const send = () => {
+    sendMessage("hello");
+  };
 
-    render() {
-        return(
-            <div className="App">
-                <button onClick={this.send}>Send</button>
-            </div>
-        )
-    }
-}
-
-export default App;
+  return(
+      <div className="App">
+          <Header />
+          <ChatHistory chatHistory={chatHistory} />
+          <button onClick={send}>Send</button>
+      </div>
+  );
+};
